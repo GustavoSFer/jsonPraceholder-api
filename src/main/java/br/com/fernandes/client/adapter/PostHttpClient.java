@@ -1,5 +1,6 @@
 package br.com.fernandes.client.adapter;
 
+import br.com.fernandes.client.PostFeignClient;
 import br.com.fernandes.core.client.PostClient;
 import br.com.fernandes.service.dto.request.PostResponse;
 import org.springframework.beans.factory.annotation.Autowired;

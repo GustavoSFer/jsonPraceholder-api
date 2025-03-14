@@ -1,4 +1,4 @@
-package br.com.fernandes.client.adapter;
+package br.com.fernandes.client;
 
 import br.com.fernandes.service.dto.request.PostResponse;
 import org.springframework.cloud.openfeign.FeignClient;
