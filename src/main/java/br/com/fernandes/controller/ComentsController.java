@@ -1,7 +1,7 @@
 package br.com.fernandes.controller;
 
-import br.com.fernandes.service.PostServiceImpl;
-import br.com.fernandes.service.dto.request.PostResponse;
+import br.com.fernandes.service.ComentsServiceImpl;
+import br.com.fernandes.service.dto.request.ComentsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,15 +12,15 @@ import java.util.List;
 
 @RequestMapping("${base.url}")
 @RestController
-public class PostController {
+public class ComentsController {
 
     @Autowired
-    private PostServiceImpl postService;
+    private ComentsServiceImpl comentsService;
 
-    @GetMapping("/posts")
-    public ResponseEntity<List<PostResponse>> getPosts() {
-        List<PostResponse> posts = postService.getPosts();
+    @GetMapping("/comments")
+    public ResponseEntity<List<ComentsResponse>> getComents() {
+        List<ComentsResponse> coments = comentsService.getComents();
 
-        return ResponseEntity.ok().body(posts);
+        return ResponseEntity.ok().body(coments);
     }
 }
