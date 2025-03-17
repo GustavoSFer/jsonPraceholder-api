@@ -1,7 +1,7 @@
 package br.com.fernandes.controller;
 
-import br.com.fernandes.service.ComentsServiceImpl;
 import br.com.fernandes.service.dto.request.ComentsResponse;
+import br.com.fernandes.service.interfaces.ComentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ import java.util.List;
 public class ComentsController {
 
     @Autowired
-    private ComentsServiceImpl comentsService;
+    private ComentsService comentsService;
 
     @GetMapping("/comments")
     public ResponseEntity<List<ComentsResponse>> getComents() {
