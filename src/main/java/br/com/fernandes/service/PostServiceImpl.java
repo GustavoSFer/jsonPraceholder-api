@@ -1,6 +1,6 @@
 package br.com.fernandes.service;
 
-import br.com.fernandes.client.adapter.PostHttpClient;
+import br.com.fernandes.core.client.PostClient;
 import br.com.fernandes.service.dto.request.PostResponse;
 import br.com.fernandes.service.interfaces.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +12,11 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
 
     @Autowired
-    private PostHttpClient postHttpClient;
+    private PostClient postClient;
 
     @Override
     public List<PostResponse> getPosts() {
-        return postHttpClient.getPosts();
+        return postClient.getPosts();
     }
 
 }

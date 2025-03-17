@@ -1,7 +1,7 @@
 package br.com.fernandes.controller;
 
-import br.com.fernandes.service.PostServiceImpl;
 import br.com.fernandes.service.dto.request.PostResponse;
+import br.com.fernandes.service.interfaces.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ import java.util.List;
 public class PostController {
 
     @Autowired
-    private PostServiceImpl postService;
+    private PostService postService;
 
     @GetMapping("/posts")
     public ResponseEntity<List<PostResponse>> getPosts() {
