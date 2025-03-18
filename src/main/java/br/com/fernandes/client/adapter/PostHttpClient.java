@@ -23,4 +23,14 @@ public class PostHttpClient implements PostClient {
             return null;
         }
     }
+
+    @Override
+    public PostResponse getById(String id) {
+        try {
+            return postFeignClient.getById(id);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }
