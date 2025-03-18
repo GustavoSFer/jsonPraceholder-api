@@ -19,4 +19,9 @@ public class PostServiceImpl implements PostService {
         return postClient.getPosts();
     }
 
+    @Override
+    public PostResponse getById(String id) {
+        return postClient.getById(id);
+    }
+
 }

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface PostClient {
     List<PostResponse> getPosts();
+    PostResponse getById(String id);
 }
