@@ -6,21 +6,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(PostController.class)
+@ExtendWith(MockitoExtension.class)
 public class PostControllerTest {
 
     @Autowired
@@ -45,16 +47,21 @@ public class PostControllerTest {
 
         // Given
         // Mockando a resposta do service corretamente
-        given(postService.getPosts()).willReturn(List.of(
-                new PostResponse(1, 1, "titulo post", "texto do post, falando sobre"),
-                new PostResponse(1, 2, "titulo post2", "texto do post, falando sobre o post 2")
-        ));
+        posts = List.of(new PostResponse(1, 1, "titulo post", "texto do post, falando sobre"),
+                 new PostResponse(1, 2, "titulo post2", "texto do post, falando sobre o post 2")
+        );
 
         //when
-        ResultActions result = mockMvc.perform(get("/posts"));
+        Mockito.when(postService.getPosts()).thenReturn(posts);
 
         // then
-        result.andExpect(status().isOk())
-                .andDo(print());
+        mockMvc.perform(get("/jsonplaceholder-api/posts"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.size()").value(2))
+                .andExpect(jsonPath("$[0].userId").value(1))
+                .andExpect(jsonPath("$.[0].id").value(1))
+                .andExpect(jsonPath("$[0].title").exists())
+                .andExpect(jsonPath("$[0].body").isNotEmpty());
     }
 }
