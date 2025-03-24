@@ -64,4 +64,22 @@ public class PostControllerTest {
                 .andExpect(jsonPath("$[0].title").exists())
                 .andExpect(jsonPath("$[0].body").isNotEmpty());
     }
+
+    @Test
+    @DisplayName("Buscando um post pelo sei id")
+    public void testBucandoPostPeloId() throws Exception {
+        // given
+        PostResponse post = new PostResponse(3,5, "Novo post realizado", "Texto do novo post");
+
+        // when
+         Mockito.when(postService.getById("5")).thenReturn(post);
+
+        // then
+        mockMvc.perform(get("/jsonplaceholder-api/posts/5"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(post.id()))
+                .andExpect(jsonPath("$.title").isNotEmpty())
+                .andExpect(jsonPath("$.body").value(post.body()));
+
+    }
 }
