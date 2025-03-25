@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 public class PostServiceImplTest {
@@ -49,4 +50,19 @@ public class PostServiceImplTest {
         verify(postClient, times(1)).getPosts();
     }
 
+    @Test
+    @DisplayName("Teste buscando um post pelo id")
+    public void buscandoPostPeloId() {
+        //Given
+        PostResponse post = new PostResponse(2,4,"title", "body");
+        //When
+        when(postClient.getById("4")).thenReturn(post);
+        PostResponse result = postClient.getById("4");
+        //Then
+        assertEquals(4, post.id());
+        assertNotNull(post.title());
+        assertNotNull(post.body());
+
+        verify(postClient, times(1)).getById("4");
+    }
 }
