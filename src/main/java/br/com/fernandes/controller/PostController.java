@@ -4,9 +4,7 @@ import br.com.fernandes.service.dto.request.PostResponse;
 import br.com.fernandes.service.interfaces.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +20,12 @@ public class PostController {
         List<PostResponse> posts = postService.getPosts();
 
         return ResponseEntity.ok().body(posts);
+    }
+
+    @GetMapping("/posts/{id}")
+    public ResponseEntity<PostResponse> getPostById(@PathVariable String id) {
+        PostResponse post = postService.getById(id);
+
+        return ResponseEntity.ok().body(post);
     }
 }
