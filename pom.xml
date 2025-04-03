@@ -72,7 +72,7 @@
 				<version>0.8.7</version>
 				<executions>
 					<execution>
-						<id>prepare-agent</id> <!-- Defina um ID único aqui -->
+						<id>agent17</id> <!-- Defina um ID único aqui -->
 						<goals>
 							<goal>prepare-agent</goal> <!-- Prepara o agente para coleta de cobertura -->
 						</goals>
@@ -80,7 +80,7 @@
 					</execution>
 
 					<execution>
-						<id>report</id> <!-- Defina outro ID único aqui -->
+						<id>report12</id> <!-- Defina outro ID único aqui -->
 						<goals>
 							<goal>report</goal> <!-- Gera o relatório após a execução dos testes -->
 						</goals>
