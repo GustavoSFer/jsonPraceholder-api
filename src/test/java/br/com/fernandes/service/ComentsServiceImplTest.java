@@ -12,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 class ComentsServiceImplTest {
@@ -49,5 +51,15 @@ class ComentsServiceImplTest {
         assertNotNull(listResult.get(0).body());
         assertEquals("Coment 1", listResult.get(0).body());
         assertEquals("Coment 2", listResult.get(1).body());
+    }
+
+    @Test
+    @DisplayName("Deve retornan um array vazio quando não tiver dados")
+    void deveRetornarVazio() {
+        when(client.getComents()).thenReturn(Collections.emptyList());
+
+        List<ComentsResponse> listResult = comentsService.getComents();
+
+        assertEquals(0, listResult.size());
     }
 }
