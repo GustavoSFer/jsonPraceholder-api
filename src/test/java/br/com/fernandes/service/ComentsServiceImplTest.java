@@ -3,6 +3,7 @@ package br.com.fernandes.service;
 import br.com.fernandes.core.client.ComentsClient;
 import br.com.fernandes.service.dto.request.ComentsResponse;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -29,6 +30,7 @@ class ComentsServiceImplTest {
     }
 
     @Test
+    @DisplayName("Se tiver um comentario espero que seja retornado uma lista com tamanho de 1")
     void getComents() {
         // Given
         ComentsResponse coment = new ComentsResponse(1,2, "nome 1", "nome@gmail.com", "body texto");
@@ -40,5 +42,6 @@ class ComentsServiceImplTest {
         assertEquals(1, listResult.size());
         assertEquals(2, coment.id());
         assertNotNull(coment.email());
+        assertNotNull(coment.body());
     }
 }
