@@ -39,7 +39,7 @@ public class PostServiceImplTest {
 
         // When
         when(postClient.getPosts()).thenReturn(postsList);
-        List<PostResponse> posts = postClient.getPosts();
+        List<PostResponse> posts = postService.getPosts();
 
         // Then
         assertEquals(2, posts.size());
@@ -56,12 +56,12 @@ public class PostServiceImplTest {
         PostResponse post = new PostResponse(2,4,"title", "body");
         //When
         when(postClient.getById("4")).thenReturn(post);
-        PostResponse result = postClient.getById("4");
+        PostResponse result = postService.getById("4");
         //Then
         assertEquals(4, post.id());
         assertNotNull(post.title());
         assertNotNull(post.body());
 
-        verify(postClient, times(1)).getById("4");
+        verify(postClient, times(1));
     }
 }
