@@ -62,6 +62,6 @@ public class PostServiceImplTest {
         assertNotNull(post.title());
         assertNotNull(post.body());
 
-        verify(postClient, times(1));
+        verify(postClient, times(1)).getById("4");
     }
 }

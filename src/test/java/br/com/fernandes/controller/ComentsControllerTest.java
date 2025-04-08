@@ -61,9 +61,10 @@ class ComentsControllerTest {
     public void retornaUmaListaVazia() throws Exception {
         // Given
         // When
+        when(comentsService.getComents()).thenReturn(List.of());
+        // Then
         mockMvc.perform(get("/jsonplaceholder-api/comments"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.size()").value(0));
-        // Then
     }
 }
