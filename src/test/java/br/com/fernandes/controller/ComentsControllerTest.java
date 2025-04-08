@@ -55,4 +55,15 @@ class ComentsControllerTest {
                 .andExpect(jsonPath("$[0].name").value("coments 1"))
                 .andExpect(jsonPath("$.size()").value(1));
     }
+
+    @Test
+    @DisplayName("Deve retornar uma lista vazia quando nao tiver comentários")
+    public void retornaUmaListaVazia() throws Exception {
+        // Given
+        // When
+        mockMvc.perform(get("/jsonplaceholder-api/comments"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.size()").value(0));
+        // Then
+    }
 }
