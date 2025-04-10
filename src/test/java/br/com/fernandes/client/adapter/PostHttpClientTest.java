@@ -74,4 +74,15 @@ class PostHttpClientTest {
         assertEquals(5, result.id());
         assertEquals(post.title(), result.title());
     }
+
+    @Test
+    @DisplayName("Deve retornar um exception em getById")
+    public void getByIdException() {
+        // When
+        when(client.getById("123")).thenThrow(new RuntimeException("Rum Time"));
+
+        PostResponse result = httpClient.getById("123");
+        // Then
+        assertNull(result);
+    }
 }
