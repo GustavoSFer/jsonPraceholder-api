@@ -62,6 +62,16 @@ class PostHttpClientTest {
     }
 
     @Test
-    void getById() {
+    @DisplayName("Deve retornar um post quando informado o seu id")
+    void getByIdTest() {
+        // Given
+        PostResponse post = new PostResponse(3,5, "Hoje mais um dia", "Mais um dia aprendendo");
+        // When
+        when(client.getById("5")).thenReturn(post);
+        PostResponse result = httpClient.getById("5");
+        // Then
+        assertNotNull(result);
+        assertEquals(5, result.id());
+        assertEquals(post.title(), result.title());
     }
 }
