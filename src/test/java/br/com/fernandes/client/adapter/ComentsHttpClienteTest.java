@@ -55,6 +55,18 @@ class ComentsHttpClienteTest {
         //Given
         //Wen
         when(feignClient.getComents()).thenReturn(List.of());
+        List<ComentsResponse> list = httpCliente.getComents();
+        //Then
+        assertEquals(0, list.size());
+    }
+
+    @Test
+    @DisplayName("Validando retorno null em caso de erro")
+    public void getComentsNullErro() {
+        //Given
+        //When
+        when(feignClient.getComents()).thenThrow(RuntimeException.class);
+        List<ComentsResponse> list = httpCliente.getComents();
         //Then
         assertNull(list);
     }
