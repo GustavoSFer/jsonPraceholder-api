@@ -48,4 +48,14 @@ class ComentsHttpClienteTest {
         assertEquals(1, resultList.get(0).id());
         assertEquals("title 1", resultList.get(0).name());
     }
+
+    @Test
+    @DisplayName("Validando lista vazia quando não tiver comentarios")
+    public void getCoemntsListaVazia() {
+        //Given
+        //Wen
+        when(feignClient.getComents()).thenReturn(List.of());
+        //Then
+        assertNull(list);
+    }
 }
