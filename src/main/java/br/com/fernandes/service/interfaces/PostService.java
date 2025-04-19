@@ -7,4 +7,5 @@ import java.util.List;
 public interface PostService {
     List<PostResponse> getPosts();
     PostResponse getById(String id);
+    void deleteDataRedis();
 }

@@ -1,4 +1,7 @@
 package br.com.fernandes.service.interfaces;
 
-public interface PostRedisRepository {
+import br.com.fernandes.service.dto.request.PostResponse;
+import org.springframework.data.repository.CrudRepository;
+
+public interface PostRedisRepository extends CrudRepository<PostResponse, Integer> {
 }
