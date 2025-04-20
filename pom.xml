@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -76,16 +76,27 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!-- Configuração do JaCoCo -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.7</version> <!-- Utilize a versão mais recente disponível -->
+				<version>0.8.7</version>
 				<executions>
 					<execution>
+						<id>agent17</id> <!-- Defina um ID único aqui -->
 						<goals>
-							<goal>prepare-agent</goal>
-							<goal>report</goal>
+							<goal>prepare-agent</goal> <!-- Prepara o agente para coleta de cobertura -->
 						</goals>
+						<phase>initialize</phase> <!-- A fase 'initialize' garante que o agente seja adicionado antes de qualquer execução -->
+					</execution>
+
+					<execution>
+						<id>report12</id> <!-- Defina outro ID único aqui -->
+						<goals>
+							<goal>report</goal> <!-- Gera o relatório após a execução dos testes -->
+						</goals>
+						<phase>verify</phase> <!-- A fase 'verify' garante que o relatório seja gerado após os testes -->
 					</execution>
 				</executions>
 			</plugin>
